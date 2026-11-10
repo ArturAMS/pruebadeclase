@@ -1,0 +1,566 @@
+/* ==========================================================================
+   Curriculum Vitae Interactivo - Arturo Miranda (Estilos CSS Puros)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Variables de Diseño & Paleta de Colores
+   -------------------------------------------------------------------------- */
+:root {
+    --bg-main: #0a0a0f;
+    --bg-secondary: #12111a;
+    --card-bg: rgba(22, 20, 32, 0.75);
+    --card-hover: rgba(30, 27, 44, 0.95);
+    --card-border: rgba(138, 43, 226, 0.2);
+    --card-border-hover: rgba(168, 85, 247, 0.6);
+
+    --primary: #8a2be2;
+    --primary-light: #a855f7;
+    --primary-glow: rgba(138, 43, 226, 0.45);
+    --secondary: #ec4899;
+    --accent: #c084fc;
+
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --text-subtle: #64748b;
+
+    --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+
+    --radius-sm: 8px;
+    --radius-md: 14px;
+    --radius-lg: 20px;
+    --radius-full: 9999px;
+
+    --transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* --------------------------------------------------------------------------
+   2. Reset & Estilos Base
+   -------------------------------------------------------------------------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg-main);
+    background-image: 
+        radial-gradient(circle at 15% 15%, rgba(138, 43, 226, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 85% 65%, rgba(236, 72, 153, 0.12) 0%, transparent 45%),
+        radial-gradient(circle at 50% 90%, rgba(168, 85, 247, 0.1) 0%, transparent 50%);
+    background-attachment: fixed;
+    color: var(--text-main);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.7;
+    min-height: 100vh;
+    padding: 40px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+/* --------------------------------------------------------------------------
+   3. Contenedor Principal (CV)
+   -------------------------------------------------------------------------- */
+.cv-container {
+    width: 100%;
+    max-width: 860px;
+    background: rgba(13, 12, 20, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-lg);
+    padding: 48px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7),
+                0 0 40px rgba(138, 43, 226, 0.12);
+    animation: fadeInContainer 0.8s ease-out;
+}
+
+@keyframes fadeInContainer {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --------------------------------------------------------------------------
+   4. Encabezado del CV
+   -------------------------------------------------------------------------- */
+.cv-header {
+    text-align: center;
+    padding-bottom: 36px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 36px;
+}
+
+.header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(138, 43, 226, 0.12);
+    border: 1px solid rgba(138, 43, 226, 0.3);
+    padding: 6px 16px;
+    border-radius: var(--radius-full);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 18px;
+    transition: var(--transition);
+}
+
+.header-badge:hover {
+    background: rgba(138, 43, 226, 0.22);
+    border-color: var(--primary-light);
+    transform: translateY(-2px);
+    box-shadow: 0 0 15px var(--primary-glow);
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    background-color: #22c55e;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #22c55e;
+    animation: pulseDot 2s infinite ease-in-out;
+}
+
+@keyframes pulseDot {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.3);
+        opacity: 0.6;
+    }
+}
+
+.cv-name {
+    font-family: var(--font-heading);
+    font-size: 2.8rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    background: linear-gradient(135deg, #ffffff 30%, var(--accent) 70%, var(--secondary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 8px;
+    transition: var(--transition);
+}
+
+.cv-name:hover {
+    filter: drop-shadow(0 0 12px var(--primary-glow));
+    transform: scale(1.02);
+}
+
+.cv-headline {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-bottom: 24px;
+}
+
+.cv-contact-info {
+    font-style: normal;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+}
+
+.contact-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 10px 18px;
+    border-radius: var(--radius-sm);
+    font-size: 0.92rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: var(--transition);
+}
+
+.contact-card:hover {
+    background: rgba(138, 43, 226, 0.12);
+    border-color: var(--primary-light);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(138, 43, 226, 0.2);
+}
+
+.contact-label {
+    color: var(--text-subtle);
+    font-weight: 600;
+}
+
+.contact-link {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.contact-link:hover {
+    color: #ffffff;
+    text-decoration: underline;
+    text-shadow: 0 0 8px var(--accent);
+}
+
+.contact-value {
+    color: var(--text-main);
+    font-weight: 500;
+}
+
+/* --------------------------------------------------------------------------
+   5. Estructura de Secciones & Títulos
+   -------------------------------------------------------------------------- */
+.cv-section {
+    margin-bottom: 38px;
+}
+
+.section-title {
+    font-family: var(--font-heading);
+    font-size: 1.45rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(138, 43, 226, 0.5), transparent);
+}
+
+/* --------------------------------------------------------------------------
+   6. Tarjetas Interactivas con Efectos CSS
+   -------------------------------------------------------------------------- */
+.card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-md);
+    padding: 24px;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Efecto de brillo de borde interactivo en hover */
+.card-interactive {
+    cursor: default;
+}
+
+.card-interactive::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.04), transparent);
+    transition: 0.6s;
+    pointer-events: none;
+}
+
+.card-interactive:hover {
+    background: var(--card-hover);
+    border-color: var(--card-border-hover);
+    transform: translateY(-5px);
+    box-shadow: 0 16px 32px -8px rgba(138, 43, 226, 0.25),
+                0 0 20px rgba(138, 43, 226, 0.15);
+}
+
+.card-interactive:hover::before {
+    left: 100%;
+}
+
+/* --------------------------------------------------------------------------
+   7. Sección Habilidades & Chips Interactivos
+   -------------------------------------------------------------------------- */
+.skills-wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.skill-category-title {
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 16px;
+}
+
+.skills-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.skill-item {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-main);
+    padding: 8px 14px;
+    border-radius: var(--radius-sm);
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+    user-select: none;
+}
+
+.skill-item:hover {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    border-color: transparent;
+    color: #ffffff;
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 6px 14px var(--primary-glow);
+}
+
+/* --------------------------------------------------------------------------
+   8. Sección Experiencia & Educación
+   -------------------------------------------------------------------------- */
+.experience-entry,
+.education-entry {
+    margin-bottom: 18px;
+}
+
+.entry-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 6px;
+}
+
+.entry-title {
+    font-family: var(--font-heading);
+    font-size: 1.18rem;
+    font-weight: 600;
+    color: #ffffff;
+    transition: var(--transition);
+}
+
+.experience-entry:hover .entry-title,
+.education-entry:hover .entry-title {
+    color: var(--accent);
+}
+
+.entry-badge {
+    background: rgba(138, 43, 226, 0.15);
+    border: 1px solid rgba(138, 43, 226, 0.35);
+    color: var(--accent);
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: var(--radius-full);
+}
+
+.entry-role {
+    color: var(--primary-light);
+    font-weight: 600;
+    font-size: 0.92rem;
+    margin-bottom: 8px;
+}
+
+.entry-desc {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+/* --------------------------------------------------------------------------
+   9. Reproductor Apple Music (Iframe Integrado)
+   -------------------------------------------------------------------------- */
+.music-player-card {
+    padding: 24px;
+}
+
+.music-desc {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 18px;
+}
+
+.iframe-container {
+    width: 100%;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    transition: var(--transition);
+}
+
+.iframe-container iframe {
+    display: block;
+    width: 100%;
+    border: none;
+}
+
+.iframe-container:hover {
+    border-color: rgba(236, 72, 153, 0.5);
+    box-shadow: 0 14px 30px rgba(236, 72, 153, 0.25);
+    transform: scale(1.01);
+}
+
+/* --------------------------------------------------------------------------
+   10. Tarjeta & Botón Sound on Sound Magazine
+   -------------------------------------------------------------------------- */
+.sos-card {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.sos-title {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 8px;
+}
+
+.sos-desc {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+.sos-action {
+    display: flex;
+    justify-content: flex-start;
+}
+
+/* Botón Interactivo con Efectos CSS */
+.boton {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 50%, var(--secondary) 100%);
+    background-size: 200% auto;
+    color: #ffffff;
+    padding: 14px 28px;
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 0.98rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(138, 43, 226, 0.35);
+    position: relative;
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.boton-icon {
+    font-size: 1.1rem;
+    transition: transform 0.3s ease;
+}
+
+/* Animación Hover del Botón */
+.boton:hover {
+    background-position: right center;
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 12px 28px rgba(168, 85, 247, 0.5);
+    color: #ffffff;
+}
+
+.boton:hover .boton-icon {
+    transform: translate(3px, -3px);
+}
+
+/* Animación Active / Clic del Botón */
+.boton:active {
+    transform: translateY(-1px) scale(0.98);
+    box-shadow: 0 4px 12px rgba(138, 43, 226, 0.4);
+}
+
+/* Destello de luz sobre el botón */
+.boton::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -120%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transform: skewX(-20deg);
+    transition: 0.75s ease-in-out;
+}
+
+.boton:hover::after {
+    left: 120%;
+}
+
+/* --------------------------------------------------------------------------
+   11. Pie de Página
+   -------------------------------------------------------------------------- */
+.cv-footer {
+    text-align: center;
+    padding-top: 28px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    color: var(--text-subtle);
+    font-size: 0.88rem;
+}
+
+.cv-footer p {
+    transition: var(--transition);
+}
+
+.cv-footer:hover p {
+    color: var(--text-muted);
+}
+
+/* --------------------------------------------------------------------------
+   12. Responsive Design (Móvil y Tablets)
+   -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+    body {
+        padding: 20px 12px;
+    }
+
+    .cv-container {
+        padding: 28px 20px;
+    }
+
+    .cv-name {
+        font-size: 2.1rem;
+    }
+
+    .cv-headline {
+        font-size: 1.1rem;
+    }
+
+    .cv-contact-info {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .skills-wrapper {
+        grid-template-columns: 1fr;
+    }
+
+    .sos-action {
+        width: 100%;
+    }
+
+    .boton {
+        width: 100%;
+        justify-content: center;
+    }
+}
